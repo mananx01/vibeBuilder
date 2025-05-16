@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Impact&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Meme Generator</h1>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="template">Template Memes</button>
+            <button class="tab-btn" data-tab="ai">AI Memes</button>
+            <button class="tab-btn" data-tab="custom">Custom Upload</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Template Memes Section -->
+        <section id="template-section" class="tab-content active">
+            <div class="controls">
+                <h2>Create a Template Meme</h2>
+                <div class="template-selector">
+                    <label for="template-select">Choose a template:</label>
+                    <select id="template-select">
+                        <option value="">Loading templates...</option>
+                    </select>
+                </div>
+                <div class="text-inputs">
+                    <div class="input-group">
+                        <label for="top-text">Top Text:</label>
+                        <input type="text" id="top-text" placeholder="Enter top text">
+                    </div>
+                    <div class="input-group">
+                        <label for="bottom-text">Bottom Text:</label>
+                        <input type="text" id="bottom-text" placeholder="Enter bottom text">
+                    </div>
+                </div>
+                <button id="generate-template-meme" class="action-btn">Generate Meme</button>
+            </div>
+            <div class="preview">
+                <h3>Preview</h3>
+                <div id="template-preview" class="preview-container">
+                    <p class="placeholder-text">Your meme will appear here</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Memes Section -->
+        <section id="ai-section" class="tab-content">
+            <div class="controls">
+                <h2>Create an AI Meme</h2>
+                <div class="ai-mode-selector">
+                    <label>
+                        <input type="radio" name="ai-mode" value="text" checked>
+                        Generate from text prompt
+                    </label>
+                    <label>
+                        <input type="radio" name="ai-mode" value="image">
+                        Generate from reference image
+                    </label>
+                </div>
+                
+                <div id="text-prompt-inputs" class="ai-input-group">
+                    <div class="input-group">
+                        <label for="ai-topic">Topic or Idea:</label>
+                        <input type="text" id="ai-topic" placeholder="Enter a topic (e.g., 'cats in space')">
+                    </div>
+                </div>
+                
+                <div id="image-prompt-inputs" class="ai-input-group hidden">
+                    <div class="input-group">
+                        <label for="reference-image">Upload Reference Image:</label>
+                        <input type="file" id="reference-image" accept="image/*">
+                    </div>
+                </div>
+                
+                <button id="generate-ai-meme" class="action-btn">Generate AI Meme</button>
+            </div>
+            <div class="preview">
+                <h3>Preview</h3>
+                <div id="ai-preview" class="preview-container">
+                    <p class="placeholder-text">Your AI meme will appear here</p>
+                </div>
+                <div id="ai-loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Generating your meme...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Upload Section -->
+        <section id="custom-section" class="tab-content">
+            <div class="controls">
+                <h2>Create a Custom Meme</h2>
+                <div class="input-group">
+                    <label for="custom-image">Upload Your Image:</label>
+                    <input type="file" id="custom-image" accept="image/*">
+                </div>
+                <div class="text-editor hidden" id="text-editor">
+                    <h3>Add Text</h3>
+                    <div class="input-group">
+                        <label for="custom-text">Text:</label>
+                        <input type="text" id="custom-text" placeholder="Enter text">
+                        <button id="add-text-btn" class="small-btn">Add Text</button>
+                    </div>
+                    <div class="text-controls">
+                        <div class="input-group">
+                            <label for="font-size">Font Size:</label>
+                            <input type="range" id="font-size" min="12" max="72" value="36">
+                            <span id="font-size-value">36px</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="font-color">Font Color:</label>
+                            <input type="color" id="font-color" value="#ffffff">
+                        </div>
+                        <div class="input-group">
+                            <label for="stroke-color">Stroke Color:</label>
+                            <input type="color" id="stroke-color" value="#000000">
+                        </div>
+                        <div class="input-group">
+                            <label>
+                                <input type="checkbox" id="text-stroke" checked>
+                                Add text stroke
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas-controls hidden" id="canvas-controls">
+                    <button id="clear-canvas" class="small-btn">Clear All</button>
+                    <button id="remove-selected" class="small-btn">Remove Selected</button>
+                </div>
+            </div>
+            <div class="preview">
+                <h3>Editor</h3>
+                <div id="canvas-container" class="preview-container">
+                    <canvas id="meme-canvas"></canvas>
+                    <p class="placeholder-text" id="canvas-placeholder">Upload an image to start editing</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download-section" class="hidden">
+            <h2>Your Meme is Ready!</h2>
+            <div class="download-options">
+                <button id="download-meme" class="action-btn">Download Meme</button>
+                <button id="create-new" class="action-btn secondary">Create Another</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created with ❤️ | Meme Generator 2023</p>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+</body>
+</html>
